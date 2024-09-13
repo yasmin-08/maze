@@ -55,7 +55,7 @@ public class Person extends Actor
     public boolean hitEdge(){
         int getX = getX();
         int getY = getY();
-        if(getX <= 10|| getX >=590|| getY <= 15|| getY >= 585  ){
+        if(getX <= 30|| getX >=590|| getY <= 35|| getY >= 585  ){
             return true;
         }
         else{
@@ -65,29 +65,31 @@ public class Person extends Actor
     
     
     public void moveAround(){
-        if(Greenfoot.isKeyDown("up")){
-            setLocation(getX(), getY()-1);
-            if(hitWall() == true || hitEdge() == true){
-                setLocation(getX(), getY()+2);
-            }
-            if(hitHome() == true){
-                World level2 = new FishWorld();
-                Greenfoot.setWorld(level2);
+       if (Greenfoot.isKeyDown("up"))
+        {
+            setLocation(getX(), getY()-3);
+            if(isTouching(Wall.class)){
+                setLocation(getX(), getY()+4);
             }
         }
-        if(Greenfoot.isKeyDown("down")){
-            setLocation(getX(), getY()+1);
-            
-            
-        }
-        if(Greenfoot.isKeyDown("right")){
-            setLocation(getX()+1, getY());
-            
-            
-        }
-        if(Greenfoot.isKeyDown("left")){
-            setLocation(getX()-1, getY());
-            
+         if (Greenfoot.isKeyDown("down"))
+        {
+            setLocation(getX(), getY()+3);
+            if(isTouching(Wall.class)){
+                setLocation(getX(), getY()-4);
+            }
+        } if (Greenfoot.isKeyDown("left"))
+        {
+            setLocation(getX()-3, getY());
+            if(isTouching(Wall.class)){
+                setLocation(getX()+4, getY());
+            }
+        } if (Greenfoot.isKeyDown("right"))
+        {
+            setLocation(getX()+3, getY());
+            if(isTouching(Wall.class)){
+                setLocation(getX()-4, getY());
+            }
         }
     }
 }
